@@ -1,16 +1,24 @@
 import PySimpleGUI as sg
 
 def login_window():
-    layout = [
+    layout_admin = [
         [sg.Text('Admin Login')],
         [sg.Text('Username:'), sg.Input(key='-USERNAME-')],
         [sg.Text('Password:'), sg.Input(key='-PASSWORD-', password_char='*')],
         [sg.Button('Login'), sg.Button('Cancel')]
     ]
 
-    return sg.Window('Login', layout, finalize=True)
+    return sg.Window('Login', layout_admin)
 
-#def customer():
+def customer():
+    layout_customer = [
+        [sg.Text("Account Holder")],
+        [sg.Text('Account Number:'),sg.Input(key='-NUMBER-')],
+        [sg.Text('OTP:'),sg.Input(key='-OTP-')],
+        [sg.Button('Login'), sg.Button('Cancel')]
+    ]
+
+    return sg.Window('Login', layout_customer)
 
 def main_window():
     layout = [
