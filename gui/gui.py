@@ -29,6 +29,7 @@ def main_window():
 
 # Create the windows
 login_window = login_window()
+customer = customer()
 main_window = main_window()
 
 # Display and interact with the Main Window
@@ -38,15 +39,18 @@ while True:
     if window == main_window and event == sg.WINDOW_CLOSED:
         break
 
-    if window == main_window and event == 'ADMIN':
-        login_window = login_window()
+    if window == main_window and event == 'ADMIN' or 'ACCOUNT HOLDER':
+        if event == 'ADMIN':
+            login_window = login_window()
+        if event == 'ACCOUNT HOLDER':
+            customer = customer()
 
-    if window == login_window and event == sg.WINDOW_CLOSED or event == 'Cancel':
-        login_window.close()
+    if window == login_window or customer and event == sg.WINDOW_CLOSED or event == 'Cancel':
+        login_window.close(),customer.close()
 
-    if window == login_window and event == 'Login':
-        username = values['-USERNAME-']
-        password = values['-PASSWORD-']
+    if window == login_window or customer and event == 'Login':
+        username ,number = values['-USERNAME-'] ,values['-NUMBER']
+        password ,otp = values['-PASSWORD-'], values['-OTP-']
         
         # Add your authentication logic here
         if username == 'admin' and password == 'admin':
@@ -56,6 +60,8 @@ while True:
 
         # Close the login window after login attempt
         login_window.close()
+
+    
 
 # Close all windows at the end
 main_window.close()
