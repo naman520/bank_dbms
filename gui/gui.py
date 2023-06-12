@@ -35,7 +35,7 @@ main_window = main_window()
 # Display and interact with the Main Window
 while True:
     window, event, values = sg.read_all_windows()
-
+    print(window, event, values)
     if window == main_window and event == sg.WINDOW_CLOSED:
         break
 
@@ -48,8 +48,12 @@ while True:
     if window == login_window or customer and event == sg.WINDOW_CLOSED or event == 'Cancel':
         login_window.close(),customer.close()
 
+
+#   BUG:: RUNNING TWO SEPERATE CONDITONS TOGETHER
+#           FIX::       create seperate if statements for login and customers 
+#           ERROR::     variables like _NUMBER are not filled but are called in combined if statements of login and customer
     if window == login_window or customer and event == 'Login':
-        username ,number = values['-USERNAME-'] ,values['-NUMBER']
+        username ,number = values['-USERNAME-'] ,values['-NUMBER-']
         password ,otp = values['-PASSWORD-'], values['-OTP-']
         
         # Add your authentication logic here
