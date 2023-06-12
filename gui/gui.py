@@ -35,7 +35,7 @@ main_window = main_window()
 # Display and interact with the Main Window
 while True:
     window, event, values = sg.read_all_windows()
-    print(window, event, values)
+    
     if window == main_window and event == sg.WINDOW_CLOSED:
         break
 
