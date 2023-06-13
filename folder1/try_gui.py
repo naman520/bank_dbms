@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-
+""" 
 # ----------- Create the 3 layouts this Window will display -----------
 layout1 = [[sg.Text('This is layout 1 - It is all Checkboxes')],
            *[[sg.CB(f'Checkbox {i}')] for i in range(5)]]
@@ -17,17 +17,17 @@ layout = [[sg.Column(layout1, key='-COL1-'), sg.Column(layout2, visible=False, k
 
 window = sg.Window('Swapping the contents of a window', layout)
 
-layout = 1  # The currently visible layout
+layout = 1  # The currently visible layout """
 while True:
     event, values = window.read()
     print(event, values)
     if event in (None, 'Exit'):
         break
-    if event == 'Cycle Layout':
+    if event == 'Admin':
         window[f'-COL{layout}-'].update(visible=False)
         layout = layout + 1 if layout < 3 else 1
         window[f'-COL{layout}-'].update(visible=True)
-    elif event in '123':
+    elif event == 'Account':
         window[f'-COL{layout}-'].update(visible=False)
         layout = int(event)
         window[f'-COL{layout}-'].update(visible=True)
