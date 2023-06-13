@@ -35,26 +35,24 @@ main_window = main_window()
 # Display and interact with the Main Window
 while True:
     window, event, values = sg.read_all_windows()
-    
+    # ADMIN LOGIN CODE
     if window == main_window and event == sg.WINDOW_CLOSED:
         break
 
-    if window == main_window and event == 'ADMIN' or 'ACCOUNT HOLDER':
+    if window == main_window and event == 'ADMIN':
         if event == 'ADMIN':
             login_window = login_window()
-        if event == 'ACCOUNT HOLDER':
-            customer = customer()
 
-    if window == login_window or customer and event == sg.WINDOW_CLOSED or event == 'Cancel':
-        login_window.close(),customer.close()
+    if window == login_window and event == sg.WINDOW_CLOSED or event == 'Cancel':
+        login_window.close()
 
 
 #   BUG:: RUNNING TWO SEPERATE CONDITONS TOGETHER
 #           FIX::       create seperate if statements for login and customers 
 #           ERROR::     variables like _NUMBER are not filled but are called in combined if statements of login and customer
-    if window == login_window or customer and event == 'Login':
-        username ,number = values['-USERNAME-'] ,values['-NUMBER-']
-        password ,otp = values['-PASSWORD-'], values['-OTP-']
+    if window == login_window and event == 'Login':
+        username = values['-USERNAME-'] 
+        password = values['-PASSWORD-']
         
         # Add your authentication logic here
         if username == 'admin' and password == 'admin':
@@ -64,6 +62,30 @@ while True:
 
         # Close the login window after login attempt
         login_window.close()
+
+    #Customer Login code
+    if window == main_window and event == sg.WINDOW_CLOSED:
+        break
+
+    if window == main_window and event == 'ACCOUNT HOLDER':
+        if event == 'ACCOUNT HOLDER':
+            customer = customer()
+
+    if window == customer and event == sg.WINDOW_CLOSED or event == 'Cancel':
+        customer.close()
+
+    if window == customer and event == 'Login':
+        number = values['-NUMBER-'] 
+        otp = values['-OTP-']
+        
+        # Add your authentication logic here
+        if number == 'admin' and otp == 'admin':
+            sg.popup('Login Successful!')
+        else:
+            sg.popup('Invalid Credentials!')
+
+        # Close the login window after login attempt
+        customer.close()
 
     
 
