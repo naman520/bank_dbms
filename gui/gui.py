@@ -1,5 +1,7 @@
 import PySimpleGUI as sg
 
+
+# NOTE ::: Use class ::  class login_window(sg.Window):
 def login_window():
     layout_admin = [
         [sg.Text('Admin Login')],
@@ -28,13 +30,12 @@ def main_window():
     return sg.Window('BANK DBMS', layout, finalize=True)
 
 # Create the windows
-login_window = login_window()
-customer = customer()
 main_window = main_window()
 
 # Display and interact with the Main Window
 while True:
     window, event, values = sg.read_all_windows()
+    print(window, event, values)
     # ADMIN LOGIN CODE
     if window == main_window and event == sg.WINDOW_CLOSED:
         break
@@ -46,13 +47,9 @@ while True:
     if window == login_window and event == sg.WINDOW_CLOSED or event == 'Cancel':
         login_window.close()
 
-
-#   BUG:: RUNNING TWO SEPERATE CONDITONS TOGETHER
-#           FIX::       create seperate if statements for login and customers 
-#           ERROR::     variables like _NUMBER are not filled but are called in combined if statements of login and customer
     if window == login_window and event == 'Login':
-        username = values['-USERNAME-'] 
-        password = values['-PASSWORD-']
+        username = str(values['-USERNAME-'])
+        password = str(values['-PASSWORD-'])
         
         # Add your authentication logic here
         if username == 'admin' and password == 'admin':
