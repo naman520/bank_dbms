@@ -26,12 +26,12 @@ class GUI:
                 event, values = self.main_window.read()
                 print(event, values)
                 if event in (None, 'Exit'):
-                    self.main_window.close()
+                    break
                 
                 if event == 'Admin':
                     self.main_window['-COL1-'].update(visible=True)
                     if event in (None, 'Exit'):
-                        self.main_window.close()
+                        break
                     elif event == 'Login':
                         self.username = str(values['-USERNAME-'])
                         self.password = str(values['-PASSWORD-'])
@@ -44,7 +44,7 @@ class GUI:
                 elif event == 'Account':
                     self.main_window['-COL2-'].update(visible=True)
                     if event in (None, 'Exit'):
-                        self.main_window.close()
+                        break
                     elif event == 'Login':
                         self.Account_Number = str(values['-Account Number-'])
                         self.OTP = str(values['-OTP-'])
