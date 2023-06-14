@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import mysql.connector as sql
 
 class GUI:
     def __init__(self):
@@ -18,11 +19,20 @@ class GUI:
 
         self.layout = [[sg.Text('Welcome to STATE BANK OF INDIA'),sg.Column(self.admin_layout, visible=False,key='-COL1-'), sg.Column(self.account_layout, visible=False,key='-COL2-')],
             [sg.Button('Admin'), sg.Button('Account'), sg.Button('Exit')]]
-        
+
+   
     def run(self):
             self.main_window = sg.Window('Introduction',self.layout,finalize=True)
-
+    
             while True:
+                #database
+                conn=sql.connect(host='localhost',user='root',passwd='123456',database='BANK_DBMS')
+                cur = conn.cursor()
+                query = "SELECT username, passwordx FROM admin"
+                cur.execute(query)
+                results = cur.fetchall()
+
+                #gui window
                 event, values = self.main_window.read()
                 print(event, values)
                 if event in (None, 'Exit'):
@@ -35,11 +45,19 @@ class GUI:
                     elif event == 'Login':
                         self.username = str(values['-USERNAME-'])
                         self.password = str(values['-PASSWORD-'])
+                        authenticated = False  # Initialize the variable here
+                        for row in results:
+                            username = row[0]
+                            passwordx = row[1]
                     # Add your authentication logic here
-                        if self.username == 'admin' and self.password == 'admin':
-                            sg.popup('Login Successful!')
-                        else:
-                            sg.popup('Invalid Credentials!')
+                            if username == self.username and passwordx == self.password:
+                                authenticated = True
+                            break
+                    if authenticated:
+                        sg.popup('Login Successful!')
+                    else:
+                        sg.popup('Invalid Credentials!')
+
                 
                 elif event == 'Account':
                     self.main_window['-COL2-'].update(visible=True)
