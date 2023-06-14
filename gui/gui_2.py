@@ -21,20 +21,24 @@ def customer():
 """ layout = [[sg.Column(layout_admin, key='ADMIN'), sg.Column(layout_customer, visible=False, key='ACCOUNT HOLDER')],
 [sg.Button('try button'), sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('Exit')]]
 """
-layout = [sg.Button('Admin'),sg.Button('Account Holder'),sg.Button('Exit')]
+layout = [
+    [sg.Button('Admin')],
+    [sg.Button('Account Holder')],
+    [sg.Button('Exit')]
+    ]
 
 window = sg.Window('Swapping the contents of a window', layout)
 
-layout =1
+# layout = 1
 
 while True:
-    event, values = sg.read_all_windows()
-    print(event, values)
+    wind, event, values = sg.read_all_windows()
+    print(wind, event, values)
     # ADMIN LOGIN CODE
-    if window == window and event == sg.WINDOW_CLOSED:
+    if wind == window and event == sg.WINDOW_CLOSED:
         break
 
-    if window == window and event == 'ADMIN':
+    if wind == window and event == 'ADMIN':
         if event == 'ADMIN':
             login_window = login_window()
 
@@ -55,10 +59,10 @@ while True:
         login_window.close()
 
     #Customer Login code
-    if window == window and event == sg.WINDOW_CLOSED:
+    if wind == window and event == sg.WINDOW_CLOSED:
         break
 
-    if window == window and event == 'Account Holder':
+    if wind == window and event == 'Account Holder':
         if event == 'Account Holder':
             customer = customer()
 

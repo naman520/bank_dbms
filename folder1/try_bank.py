@@ -1,5 +1,5 @@
 #oops implementation for banking
-
+#BUG:: initializatio of class is wrong !
 class bank:
     def __init__(self,cname,cage,csex,amount,balance,acc_number=200):
         self.cname = cname
