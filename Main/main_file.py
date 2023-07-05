@@ -50,13 +50,13 @@ class GUI:
                             username = row[0]
                             passwordx = row[1]
                     # Add your authentication logic here
-                            if username == self.username and passwordx == self.password:
+                            if username == row[0] and password == row[1]:
                                 authenticated = True
-                            break
-                    if authenticated:
-                        sg.popup('Login Successful!')
-                    else:
-                        sg.popup('Invalid Credentials!')
+                                break
+                                #authenticated = True
+                        if authenticated:
+                            #popup window for login authentication
+                            pass
 
                 
                 elif event == 'Account':
