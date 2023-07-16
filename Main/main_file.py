@@ -47,22 +47,6 @@ class GUI:
                             print("okkk")
                         else:
                             print("nikl lwde")
-                        """ self.username = str(values['-USERNAME-'])
-                        self.password = str(values['-PASSWORD-'])
-                        authenticated = False  # Initialize the variable here
-                        for row in results:
-                            username = row[0]
-                            passwordx = row[1] """
-
-                    # Add your authentication logic here
-                        """if username == row[0] and password == row[1]:
-                                authenticated = True
-                                break
-                                #authenticated = True
-                        if authenticated:
-                            #popup window for login authentication
-                            pass """
-
                 
                 elif event == 'Account':
                     self.main_window['-COL2-'].update(visible=True)
