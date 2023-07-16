@@ -28,7 +28,7 @@ class GUI:
                 #database
                 conn=sql.connect(host='localhost',user='root',passwd='123456',database='BANK_DBMS')
                 cur = conn.cursor()
-                query = "SELECT * FROM admin"
+                query = "SELECT username, passwordx FROM admin"
                 cur.execute(query)
                 results = cur.fetchall()
 
@@ -43,25 +43,19 @@ class GUI:
                     if event in (None, 'Exit'):
                         break
                     elif event == 'Login':
-                        if (self.key=='Username' and self.key=='Password')==results:
-                            print("okkk")
-                        else:
-                            print("nikl lwde")
-                        """ self.username = str(values['-USERNAME-'])
+                        self.username = str(values['-USERNAME-'])
                         self.password = str(values['-PASSWORD-'])
                         authenticated = False  # Initialize the variable here
                         for row in results:
                             username = row[0]
-                            passwordx = row[1] """
-
+                            passwordx = row[1]
                     # Add your authentication logic here
-                        """if username == row[0] and password == row[1]:
+                            if username == row[0] and password == row[1]:
                                 authenticated = True
                                 break
                                 #authenticated = True
-                        if authenticated:
+                        #if authenticated:
                             #popup window for login authentication
-                            pass """
 
                 
                 elif event == 'Account':
