@@ -28,7 +28,7 @@ class GUI:
 
         while True:
             # database
-            conn = sql.connect(host='localhost', user='Lakshay', passwd='lakshay*91250538', database='BANK_DBMS')
+            conn = sql.connect(host='localhost', user='root', passwd='123456', database='BANK_DBMS')
             cur = conn.cursor()
             query = "SELECT username, passwordx FROM admin"
             cur.execute(query)
