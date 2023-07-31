@@ -10,12 +10,6 @@ def amt():
     return 
 
 def credit(acc_no,amount):
-    #database connection
-    
-    query = "SELECT * FROM customer_login"
-    cur.execute(query)
-    results = cur.fetchall()
-
     #gui
     sg.theme('LightBlue5')
     layout = [  [sg.Text('Account Number'),sg.InputText()],
@@ -29,15 +23,20 @@ def credit(acc_no,amount):
         event, values = window.read()
         if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
             break
-        if (values[1]) in results[1]:
-            window = sg.Window('Credit',layout2)
-            while True:
-                event, values = window.read()
-                if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
-                    break
-                else:
-                    money_query = "UPDATE customer_login SET money ="+ str(amount+original) +" where acc_no = "+str(acc_no)
+        while True:
+            event, values = window.read()
 
+            query = "SELECT * FROM customer_login where acc_no = " + str(acc_no)
+            cur.execute(query)
+            results = cur.fetchall()
+
+            print(values, results)
+
+            if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
+                break
+            else:
+                # money_query = "UPDATE customer_login SET money ="+ str(amount+results[3]) +" where acc_no = "+str(acc_no)
+                break
     window.close()
 
 credit(1598,2000)
