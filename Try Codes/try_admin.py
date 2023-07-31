@@ -1,11 +1,13 @@
 import PySimpleGUI as sg
-import mysql.connector as sql
+#import mysql.connector as sql
+import db
 
-conn=sql.connect(host='localhost',user='root',passwd='123456',database='BANK_DBMS')
+""" conn=sql.connect(host='localhost',user='root',passwd='123456',database='BANK_DBMS')
 cur = conn.cursor()
 query = "SELECT * FROM admin"
 cur.execute(query)
-results = cur.fetchall()
+results = cur.fetchall() """
+db()
 
 
 sg.theme('DarkAmber')   # Add a touch of color
