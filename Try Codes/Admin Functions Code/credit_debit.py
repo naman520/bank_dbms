@@ -1,6 +1,13 @@
 import PySimpleGUI as sg
 import mysql.connector as sql
 
+def amt():
+    conn=sql.connect(host='localhost',user='root',passwd='123456',database='BANK_DBMS')
+    cur = conn.cursor()
+    amt = "SELECT money FROM customer_login"
+    cur.execute(amt)
+    results = cur.fetchall()
+
 def credit(acc_no,name,amount):
     #database connection
     conn=sql.connect(host='localhost',user='root',passwd='123456',database='BANK_DBMS')
@@ -13,17 +20,25 @@ def credit(acc_no,name,amount):
     sg.theme('LightBlue5')
     layout = [  [sg.Text('Account Holder Name'),sg.InputText()],
                 [sg.Text('Account Number'),sg.InputText()],
-                [sg.Text('Amount to be Credited'),sg.InputText()],
-                [sg.Button('Credit'), sg.Button('Cancel')] ]
+                [sg.Button('Search'), sg.Button('Cancel')] ]
+    layout2 =[ [sg.Text('Amount to be Credited'),sg.InputText()],
+                [sg.Button('Credit Amount'), sg.Button('Cancel Transaction')]]
 
 # Create the Window
-    window = sg.Window('Window Title', layout)
+    window = sg.Window('Admin', layout)
     while True:
         event, values = window.read()
         if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
             break
-        if (values[0],values[1]) in results:
-            pass
+        if (values[0] and values[1]) in results:
+            window = sg.Window('Credit',layout2)
+            while True:
+                event, values = window.read()
+                if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
+                    break
+                else:
+                    
+
 
     window.close()
 
