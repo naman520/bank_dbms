@@ -7,7 +7,7 @@ cur = conn.cursor()
 sg.theme("LightBlue5")
 layout = [[sg.Text('Account Number'),sg.InputText()],
         [sg.Button('Search'), sg.Button('Cancel')]]
-layout2 = [ [sg.Text('Amount to be Credited'),sg.InputText()],
+layout2 = [ [sg.Text('amount'),sg.InputText()],
         [sg.Button('Credit Amount'), sg.Button('Cancel')]]
 
 layout3 = [[layout,sg.Column(layout2,visible=False,key='-Col-')]]
@@ -27,5 +27,20 @@ while True:
         except:
             print("Account not found:", account_number)
             sg.popup("Account not found. Please enter a valid account number.")
+    if event == 'Credit Amount':
+        if event == sg.WIN_CLOSED or event == 'Cancel':
+            break
+        #amount = values[3]
+        try:
+            money_query = "UPDATE customer_login SET money ="+ str(amount+results[0][3]) +" where acc_no = "+str(acc_no)
+            time_query = "UPDATE customer_login SET transaction_time = NOW() where acc_no = "+str(acc_no)
+            cur.execute(money_query)
+            cur.execute(time_query)
+            results = cur.fetchall()
+            sg.popup("Transaction Success")
+        except:
+            sg.popup("Transaction Failed")
+            
+conn.commit()
 
 window.close()
