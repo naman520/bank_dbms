@@ -19,13 +19,16 @@ while True:
     event, values = window.read()
     values = tuple(values.values())
     values = values[0]
+    print(values, results)
     if event == sg.WIN_CLOSED or event == 'Cancel':
         break
-    if values in results:
-        print("suceess")
-        sg.Column(layout2,visible=True,key='-Col-')
-    else:
-        event = sg.WIN_CLOSED
-
+    if event == 'search':
+        account_number = values[0]
+        if (account_number) in results:
+            print("Account found:", account_number)
+            window['-Col2-'].update(visible=True)
+        else:
+            print("Account not found:", account_number)
+            sg.popup("Account not found. Please enter a valid account number.")
 
 window.close()
