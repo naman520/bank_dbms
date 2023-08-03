@@ -35,8 +35,10 @@ def credit(acc_no,amount):
             if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
                 break
             else:
-                # money_query = "UPDATE customer_login SET money ="+ str(amount+results[3]) +" where acc_no = "+str(acc_no)
+                money_query = "UPDATE customer_login SET money ="+ str(amount+results[0][3]) +" where acc_no = "+str(acc_no)
+                cur.execute(money_query)
                 break
+    conn.commit()
     window.close()
 
-credit(1598,2000)
+credit(13376,2000)
