@@ -47,8 +47,7 @@ while True:
 
             n = int(values[1])
             print(amount)
-            money_query = "UPDATE customer_login SET money =" + str(amount + n) + " where acc_no = " + str(
-                account_number)
+            money_query = "UPDATE customer_login SET money =" + str(amount + n) + " where acc_no = " + str(account_number)
             time_query = "UPDATE customer_login SET transaction_time = NOW() where acc_no = " + str(account_number)
             cur.execute(money_query)
             cur.execute(time_query)
