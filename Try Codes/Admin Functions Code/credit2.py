@@ -5,14 +5,6 @@ conn = sql.connect(host='localhost', user='root', passwd='123456', database='BAN
 cur = conn.cursor()
 
 sg.theme("LightBlue5")
-<<<<<<< HEAD
-layout = [[sg.Text('Account Number'), sg.InputText()],
-          [sg.Button('Search'), sg.Button('Cancel')]]
-layout2 = [[sg.Text('Amount to be Credited'), sg.InputText()],
-           [sg.Button('Credit Amount'), sg.Button('Cancel')]]
-
-layout3 = [[layout, sg.Column(layout2, visible=False, key='-Col-')]]
-=======
 layout = [[sg.Text('Account Number'),sg.InputText()],
         [sg.Button('Search'), sg.Button('Cancel')]]
 layout2 = [ [sg.Text('amount'),sg.InputText()],
@@ -50,7 +42,6 @@ while True:
             sg.popup("Transaction Failed")
             
 conn.commit()
->>>>>>> a44960182894c7be79d349b9725d65e45b3eab33
 
 
 def credit_window():
