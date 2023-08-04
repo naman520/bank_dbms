@@ -32,8 +32,15 @@ while True:
             break
         #amount = values[3]
         try:
-            money_query = "UPDATE customer_login SET money ="+ str(amount+results[0][3]) +" where acc_no = "+str(acc_no)
-            time_query = "UPDATE customer_login SET transaction_time = NOW() where acc_no = "+str(acc_no)
+            print(values)
+            get_money_query = "SELECT money FROM customer_login where acc_no = " + str(account_number)
+            print(get_money_query)
+            cur.execute(get_money_query)
+            amount = cur.fetchall()[0][0]
+            n = int(values[1])
+            print(amount)
+            money_query = "UPDATE customer_login SET money ="+ str(amount+n) +" where acc_no = "+str(account_number)
+            time_query = "UPDATE customer_login SET transaction_time = NOW() where acc_no = "+str(account_number)
             cur.execute(money_query)
             cur.execute(time_query)
             results = cur.fetchall()
