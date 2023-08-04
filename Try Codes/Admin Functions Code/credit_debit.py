@@ -40,5 +40,3 @@ def credit(acc_no,amount):
                 break
     conn.commit()
     window.close()
-
-credit(13376,2000)
