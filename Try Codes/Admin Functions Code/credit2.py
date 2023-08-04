@@ -1,9 +1,9 @@
 import PySimpleGUI as sg
 import mysql.connector as sql
-
+#DB
 conn=sql.connect(host='localhost',user='root',passwd='123456',database='BANK_DBMS')
 cur = conn.cursor()
-
+#GUI
 sg.theme("LightBlue5")
 layout = [[sg.Text('Account Number'),sg.InputText()],
         [sg.Button('Search'), sg.Button('Cancel')]]
