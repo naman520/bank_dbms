@@ -24,21 +24,17 @@ while True:
     if event == sg.WIN_CLOSED or event == 'Cancel':
         break
     if event == "Create Account":
-        try:
             a = values['ACC']
             a2 = values['Name']
             a3 = values['pin']
             a4 = values['money']
-
             a6 = (a, a2, a3, a4)
             print(a6)
-            query = "INSERT INTO customer_login (Name, acc_no, login_pin, money) VALUES (%s, %s, %s, %s, %s)"
-            values = (a2, a, a3, a4, formatted_date)
+
+            query = "INSERT INTO customer_login (Name, acc_no, login_pin, money,transaction_time) VALUES (%s, %s, %s, %s,%s)"
+            val = (a2, a, a3, a4,today)
             print(query,values)
-            cur.execute(query,values)
-            conn.commit()
-        except:
-            print("Error!!!!!!!")
-
-
+            cur.execute(query,val)
+            sg.popup("Account Created Successfully Account Number is",a,"in the name of",a2)
+conn.commit()
 window.close()
