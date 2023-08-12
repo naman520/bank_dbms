@@ -7,14 +7,14 @@ def credit_fun():
     cur = conn.cursor()
     # GUI
     sg.theme("LightBlue5")
-    layout = [[sg.Text('Account Number'), sg.InputText()],
+    layout_1 = [[sg.Text('Account Number'), sg.InputText()],
               [sg.Button('Search'), sg.Button('Cancel')]]
 
-    layout2 = [[sg.Text('amount'), sg.InputText()],
+    layout_2 = [[sg.Text('amount'), sg.InputText()],
                [sg.Button('Credit Amount'), sg.Button('Cancel')]]
 
-    layout3 = [[layout, sg.Column(layout2, visible=False, key='-Col-')]]
-    window = sg.Window('Admin', layout3)
+    layout_3 = [[layout_1, sg.Column(layout_2, visible=False, key='-Col-')]]
+    window = sg.Window('Admin', layout_3)
 
     while True:
         event, values = window.read()
@@ -45,11 +45,10 @@ def credit_fun():
                 cur.execute(get_money_query)
 
                 amount = cur.fetchall()[0][0]
-
+                print(values)
                 n = int(values[1])
                 print(amount)
-                money_query = "UPDATE customer_login SET money =" + str(amount + n) + " where acc_no = " + str(
-                    account_number)
+                money_query = "UPDATE customer_login SET money =" + str(amount + n) + " where acc_no = " + str(account_number)
                 time_query = "UPDATE customer_login SET transaction_time = NOW() where acc_no = " + str(account_number)
                 cur.execute(money_query)
                 cur.execute(time_query)
@@ -60,3 +59,5 @@ def credit_fun():
 
     conn.commit()
     window.close()
+
+credit_fun()
