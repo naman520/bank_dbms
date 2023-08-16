@@ -27,7 +27,7 @@ def main_window():
             [sg.Button('Credit')],[sg.Button('Debit')],[sg.Button('Account')]]
 
     # Create the Window
-    window = sg.Window('Bank Admin', layout, keep_on_top=True)
+    window = sg.Window('Bank Admin GUI', layout, keep_on_top=True,modal=True)
     # Event Loop to process "events" and get the "values" of the inputs
     while True:
         event, values = window.read()
@@ -49,5 +49,4 @@ def main_window():
 
     window.close()
 
-if __name__ == '__main__':
-    main_window()
+main_window()

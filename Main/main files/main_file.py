@@ -1,13 +1,11 @@
 import PySimpleGUI as sg
-import final_admin
-sg.theme('DarkAmber')  # Add a touch of color
+import final_admin , final_account
+sg.theme('DarkAmber')
 # All the stuff inside your window.
-layout_1 = [[sg.Image('Untitledlogo.png',expand_x=True, expand_y=True )],
-            [sg.Button('Admin'),sg.Button('Customer'),sg.Button('Cancel')]]
+layout_main_window = [[sg.Image('Untitledlogo.png',expand_x=True, expand_y=True )],
+            [sg.Button('Admin'),sg.Button('Customer'),sg.Button('Cancel'),sg.Button('XY')]]
 
-window = sg.Window('HelloWorld', layout_1,  keep_on_top=True)
-def admin():
-   final_admin.adminn()
+window = sg.Window('Python Bank Of INDIA', layout_main_window,  keep_on_top=True)
 
 while True:
    event, values = window.read()
@@ -15,5 +13,10 @@ while True:
    if event == sg.WIN_CLOSED or event == 'Cancel':  # if user closes window or clicks cancel
       break
    if event == 'Admin':
-      admin()
+      final_admin.main_window()
+   elif event == 'Customer':
+      final_account.customer()
+   elif event == 'XY':
+      sg.popup_auto_close('Welcome To Python Bank Of INDIA',sg.Image('Untitledlogo.png',expand_x=True, expand_y=True ))
+
 window.close()
