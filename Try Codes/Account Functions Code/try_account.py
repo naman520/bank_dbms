@@ -35,3 +35,5 @@ def auth_user():
             break
 
     window.close()
+
+auth_user()

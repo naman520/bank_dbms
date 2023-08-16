@@ -58,5 +58,4 @@ def debitt():
                 sg.popup("Transaction Failed")
 
     conn.commit()
-
     window.close()
