@@ -22,6 +22,7 @@ while True:
         break
     if (values[0],values[1]) in results:
         print("Authentication successful")
+        print("Authentication successful")
     else:
         print("Authentication failed")
         event = sg.WIN_CLOSED
