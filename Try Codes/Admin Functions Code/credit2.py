@@ -31,6 +31,7 @@ while True:
         if event == sg.WIN_CLOSED or event == 'Cancel':
             break
         #amount = values[3]
+        print(values)
         try:
             money_query = "UPDATE customer_login SET money ="+ str(amount+results[0][3]) +" where acc_no = "+str(acc_no)
             time_query = "UPDATE customer_login SET transaction_time = NOW() where acc_no = "+str(acc_no)
