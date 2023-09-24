@@ -1,6 +1,7 @@
 def customer():
     import PySimpleGUI as sg
     import mysql.connector as sql
+    import matplotlib.pyplot as plt
 
     conn = sql.connect(host='localhost', user='root', passwd='123456', database='BANK_DBMS')
     cur = conn.cursor()
@@ -15,7 +16,7 @@ def customer():
         [sg.Text('Account Holder Name',key = 'ACC'), sg.InputText()],
         [sg.Text('Account Number'), sg.InputText()],
         [sg.Text('Pin'), sg.InputText()],
-        [sg.Button('Login'), sg.Button('Cancel'),sg.Button('Details')]]
+        [sg.Button('Login'), sg.Button('Cancel'),sg.Button('Details'),sg.Button('Analysis')]]
 
     # Create the Window
     window = sg.Window('Customer GUI', layout,keep_on_top=True)
@@ -37,6 +38,26 @@ def customer():
                 sg.popup_scrolled("Account Holder Name --->"+str(values[0]),"\nAccount Number --->"+str(values[1]),"\nCurrent Account Balance--->"+str(r2),size=(300, 10))
             else:
                 sg.popup_auto_close("Welcome")
+            if event == 'Analysis':
+                # x axis values
+                x = [1, 2, 3]
+                # corresponding y axis values
+                y = [2, 4, 1]
+
+                # plotting the points
+                plt.plot(x, y)
+
+                # naming the x axis
+                plt.xlabel('x - axis')
+                # naming the y axis
+                plt.ylabel('y - axis')
+
+                # giving a title to my graph
+                plt.title('This Analysis Feature is under development')
+
+                # function to show the plot
+                plt.show()
+                sg.popup_auto_close('This Graph is only for example')
         else:
             print("Authentication failed")
             event = sg.WIN_CLOSED
