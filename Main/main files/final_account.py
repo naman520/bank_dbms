@@ -1,7 +1,6 @@
 def customer():
     import PySimpleGUI as sg
     import mysql.connector as sql
-    import checking_details as cd
 
     conn = sql.connect(host='localhost', user='root', passwd='123456', database='BANK_DBMS')
     cur = conn.cursor()
@@ -13,13 +12,13 @@ def customer():
     sg.theme('DarkAmber')  # Add a touch of color
     # All the stuff inside your window.
     layout = [[sg.Image('Untitledlogo.png',expand_x=True, expand_y=True )],
-        [sg.Text('Account Holder Name'), sg.InputText()],
+        [sg.Text('Account Holder Name',key = 'ACC'), sg.InputText()],
         [sg.Text('Account Number'), sg.InputText()],
         [sg.Text('Pin'), sg.InputText()],
         [sg.Button('Login'), sg.Button('Cancel'),sg.Button('Details')]]
 
     # Create the Window
-    window = sg.Window('Customer GUI', layout,keep_on_top=True,modal=True)
+    window = sg.Window('Customer GUI', layout,keep_on_top=True)
     # Event Loop to process "events" and get the "values" of the inputs
     while True:
         event, values = window.read()
@@ -31,9 +30,13 @@ def customer():
         if (values[0], values[1], values[2]) in results:
             print("Authentication successful")
             if event == 'Details':
-                cd.details()
+                account_number = values[1]
+                q2 = "SELECT money FROM customer_login where acc_no =" + str(account_number)
+                cur.execute(q2)
+                r2 = cur.fetchall()
+                sg.popup_scrolled("Account Holder Name --->"+str(values[0]),"\nAccount Number --->"+str(values[1]),"\nCurrent Account Balance--->"+str(r2),size=(300, 10))
             else:
-                sg.popup("Welcome")
+                sg.popup_auto_close("Welcome")
         else:
             print("Authentication failed")
             event = sg.WIN_CLOSED

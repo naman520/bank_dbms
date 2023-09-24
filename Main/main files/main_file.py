@@ -1,11 +1,12 @@
 import PySimpleGUI as sg
 import final_admin , final_account
+
 sg.theme('DarkAmber')
 # All the stuff inside your window.
 layout_main_window = [[sg.Image('Untitledlogo.png',expand_x=True, expand_y=True )],
             [sg.Button('Admin'),sg.Button('Customer'),sg.Button('Cancel'),sg.Button('XY')]]
 
-window = sg.Window('Python Bank Of INDIA', layout_main_window,  keep_on_top=True)
+window = sg.Window('Python Bank Of INDIA', layout_main_window)
 
 while True:
    event, values = window.read()
